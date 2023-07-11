@@ -1,7 +1,5 @@
-package com.hw7.tests;
+package com.hw12.tests;
 
-import com.hw7.pages.SimpleFormWithPageObjects;
-import com.hw7.tests.TestBase;
 import org.junit.jupiter.api.Test;
 import java.io.File;
 

@@ -1,4 +1,4 @@
-package com.hw7.pages.components;
+package com.hw12.pages.components;
 
 import static com.codeborne.selenide.Selenide.$;
 

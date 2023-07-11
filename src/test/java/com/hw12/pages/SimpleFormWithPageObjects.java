@@ -1,8 +1,8 @@
-package com.hw7.pages;
+package com.hw12.pages;
 import com.codeborne.selenide.SelenideElement;
-import com.hw7.pages.components.CalendarComponent;
-import com.hw7.pages.components.CityComponent;
-import com.hw7.pages.components.VerifyComponent;
+import com.hw12.pages.components.CalendarComponent;
+import com.hw12.pages.components.CityComponent;
+import com.hw12.pages.components.VerifyComponent;
 
 import java.io.File;
 

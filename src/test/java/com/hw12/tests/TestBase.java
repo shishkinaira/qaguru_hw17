@@ -1,4 +1,4 @@
-package com.hw7.tests;
+package com.hw12.tests;
 
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
