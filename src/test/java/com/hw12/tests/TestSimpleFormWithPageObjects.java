@@ -1,10 +1,14 @@
 package com.hw12.tests;
 import com.hw12.pages.SimpleFormWithPageObjects;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 public class TestSimpleFormWithPageObjects extends TestBase {
     SimpleFormWithPageObjects simpleFormWithPageObjects = new SimpleFormWithPageObjects();
+    @Tag("formtest")
     @Test
+    @DisplayName("Checking form and result content")
     void successfulRegistrationTest() {
         //Проверка заполения формы
         simpleFormWithPageObjects.openPage()

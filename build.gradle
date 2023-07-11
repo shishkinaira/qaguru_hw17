@@ -43,3 +43,9 @@ allure {
         }
     }
 }
+
+task test_form(type:Test){
+    useJUnitPlatform(){
+        includeTags("formtest")
+    }
+}
