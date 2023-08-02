@@ -1,7 +1,8 @@
 plugins {
     id 'java'
-    id 'io.qameta.allure' version '2.11.2'
 }
+
+version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
@@ -9,21 +10,13 @@ repositories {
 
 dependencies {
     testImplementation(
-            'com.codeborne:selenide:6.15.0',
-            'org.junit.jupiter:junit-jupiter:5.9.3',
-            'org.slf4j:slf4j-simple:2.0.5',
-            'io.qameta.allure:allure-selenide:2.22.2',
-            'com.codeborne:pdf-test:1.7.0',
-            'com.codeborne:xls-test:1.4.3',
-            'com.opencsv:opencsv:5.7.1',
-            'com.google.code.gson:gson:2.10.1',
-            'com.github.javafaker:javafaker:1.0.2',
-            'org.assertj:assertj-core:3.22.0',
-            'com.fasterxml.jackson.core:jackson-databind:2.13.4')
-}
-
-tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+            'org.junit.jupiter:junit-jupiter-api:5.8.1',
+            'org.seleniumhq.selenium:selenium-java:3.141.59',
+            'io.github.bonigarcia:webdrivermanager:5.2.1',
+            'org.aeonbits.owner:owner:1.0.4',
+            'org.assertj:assertj-core:3.23.1'
+    )
+    testRuntimeOnly('org.junit.jupiter:junit-jupiter-engine:5.8.1')
 }
 
 test {
@@ -31,28 +24,13 @@ test {
     systemProperties(System.getProperties())
 }
 
-allure {
-    report {
-        version.set("2.22.0")
-    }
-    adapter { // отвечает за появление папочки build/allure-results
-        aspectjWeaver.set(true) //обработка аннотации @Step
-        frameworks {
-            junit5 { //название фреймворка
-                adapterVersion.set("2.19.0") //версия интеграции фреймворка и Allure
-            }
-        }
-    }
-}
-
-task test_form(type:Test){
-    useJUnitPlatform(){
-        includeTags("formtest")
-    }
-}
-
-task remote_form(type:Test){
-    useJUnitPlatform(){
+task remote_test(type: Test) {
+    useJUnitPlatform {
         includeTags("remote")
+    }
+}
+task property_test(type: Test) {
+    useJUnitPlatform {
+        includeTags("property")
     }
 }
