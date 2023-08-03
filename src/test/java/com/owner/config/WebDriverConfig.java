@@ -2,16 +2,13 @@ package com.owner.config;
 import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "system:properties",
-        "classpath:${env}.properties",
-        "file:~/${env}.properties",
-        "file:./${env}.properties"
+        "classpath:${env}.properties"
 })
 public interface WebDriverConfig extends Config {
 
     @Key("browser")
-    @DefaultValue("chrome")
-    String getBrowser();
+    @DefaultValue("CHROME")
+    String browserName();
 
     @Key("browserVersion")
     @DefaultValue("100.0")

@@ -6,10 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.function.Supplier;
-import static org.openqa.selenium.remote.BrowserType.CHROME;
-import static org.openqa.selenium.remote.BrowserType.FIREFOX;
-public class WebDriverProvider implements Supplier<WebDriver> {
 
+import static com.codeborne.selenide.Browsers.CHROME;
+import static com.codeborne.selenide.Browsers.FIREFOX;
+
+public class WebDriverProvider implements Supplier<WebDriver> {
     private final WebDriverConfig config;
 
     public WebDriverProvider() {
@@ -24,7 +25,7 @@ public class WebDriverProvider implements Supplier<WebDriver> {
     }
 
     public WebDriver createDriver() {
-        switch (config.getBrowser()) {
+        switch (config.browserName()) {
             case CHROME: {
                 WebDriverManager.chromedriver().setup();
                 return new ChromeDriver();
