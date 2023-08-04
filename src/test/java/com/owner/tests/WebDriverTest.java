@@ -2,22 +2,19 @@ package com.owner.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.owner.config.WebDriverConfig;
-import com.owner.config.WebDriverProvider;
 import org.aeonbits.owner.ConfigFactory;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import java.util.Map;
+
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.*;
 
 
 public class WebDriverTest {
-
-    private static WebDriver driver;
     static WebDriverConfig config = ConfigFactory.create(WebDriverConfig.class, System.getProperties());
-
     @BeforeAll
     static void beforeAll() {
         Configuration.baseUrl = config.getBaseUrl();
@@ -27,22 +24,16 @@ public class WebDriverTest {
         if (config.isRemote()) {
             Configuration.remote = config.remoteUrl();
         }
-    }
-    @BeforeEach
-    public void startDriver() {
-        driver = new WebDriverProvider().get();
-    }
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("selenoid:options", Map.<String, Object>of("enableVNC", true, "enableVideo", true));
 
+        Configuration.browserCapabilities = capabilities;
+    }
     @Test
     public void testGithub() {
-        String title = driver.getTitle();
-        assertEquals("GitHub: Let’s build from here · GitHub", title);
+        open(Configuration.baseUrl);
+        $(".application-main").shouldHave(text("Let’s build from here"));
     }
 
-
-    @AfterEach
-    public void stopDriver() {
-        driver.quit();
-    }
 
 }

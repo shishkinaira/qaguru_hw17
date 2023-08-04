@@ -2,12 +2,13 @@ package com.owner.config;
 import org.aeonbits.owner.Config;
 @Config.LoadPolicy(Config.LoadType.MERGE)
 @Config.Sources({
-        "classpath:${env}.properties"
+        "classpath:remote.properties",
+        "classpath:local.properties"
 })
 public interface WebDriverConfig extends Config {
 
     @Key("browser")
-    @DefaultValue("CHROME")
+    @DefaultValue("firefox")
     String browserName();
 
     @Key("browserVersion")
@@ -23,7 +24,7 @@ public interface WebDriverConfig extends Config {
     String getBaseUrl();
 
     @Key("isRemote")
-    @DefaultValue("true")
+    @DefaultValue("false")
     boolean isRemote();
 
     @Key("remoteUrl")
